@@ -1,4 +1,4 @@
-const Employee = require('../Employee.model.js');
+const Employee = require('../employee.model.js');
 const expect = require('chai').expect;
 const mongoose = require('mongoose');
 
@@ -29,7 +29,7 @@ describe('Employee', () => {
     }
   });
   
-  it('should not throw an error if "name" is okay', () => {
+  it('should not throw an error if: "firstName", "lastName" and "department" are okay', () => {
 
     const cases = [ {firstName: 'John', lastName: 'Doe', department: 'IT'}, {firstName: 'Abc', lastName: 'cde', department: 'fgh'} ];
     
@@ -44,7 +44,7 @@ describe('Employee', () => {
   
   it('should throw an error if "firstName", "lastName", "department" are too short/long', () => {
     
-    const cases = [ {firstName: 'J', lastName: 'De', department: 'T'}, {firstName: 'Ab', lastName: 'cd', department: 'i'} ]; // various cases: too short, too long
+    const cases = [ {firstName: 'J', lastName: 'Dep', department: 'T'}, {firstName: 'Ab', lastName: 'cd', department: 'Logisticdepartmentlogistic'} ]; // various cases: too short, too long
     
     for (let arg of cases) {
       const emp = new Employee( {arg} );
