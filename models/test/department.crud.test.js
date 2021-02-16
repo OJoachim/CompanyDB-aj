@@ -1,21 +1,24 @@
-const Department = require('../department.model');
+// for a moment in coments
+/*const Department = require('../department.model.js');
 const expect = require('chai').expect;
 const MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer;
 const mongoose = require('mongoose');
 
+let fakeDB;
+
 describe('Department', () => {
   
-  //before(async () => {
+ before(async () => {
     
-    //try {
-      //const fakeDB = new MongoMemoryServer();
-      //const uri = await fakeDB.getConnectionString();
-      //mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    //}
-    //catch(err) {
-      //console.log(err);
-    //}
-  //});
+    try {
+      fakeDB = new MongoMemoryServer();
+      const uri = await fakeDB.getUri();
+      mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    }
+    catch(err) {
+      console.log(err);
+    }
+  });
   
   describe('Reading data', () => {
     
@@ -25,6 +28,10 @@ describe('Department', () => {
 
       const testDepTwo = new Department({ name: 'Department #2' });
       await testDepTwo.save();
+    });
+    
+    after(async () => {
+      await Department.deleteMany();
     });
     
     it('should return all the data with "find" method', async () => {
@@ -37,10 +44,6 @@ describe('Department', () => {
       const department = await Department.findOne({name: 'Department #1'});
       const expectedName = 'Department #1';
       expect(department.name).to.be.equal(expectedName);
-    });
-    
-    after(async () => {
-      await Department.deleteMany();
     });
     
   });
@@ -126,9 +129,10 @@ describe('Department', () => {
     });
   });
   
-  after(() => {
+  after(async () => {
     mongoose.models = {};
+    await mongoose.disconnect();
+    await fakeDB.stop();
   });
-  
-  
-});
+    
+});*/

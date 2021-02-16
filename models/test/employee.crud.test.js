@@ -1,20 +1,22 @@
-const Employee = require('../employee.model.js');
+// for a moment in coments
+/*const Employee = require('../employee.model.js');
 const expect = require('chai').expect;
 const MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer;
 const mongoose = require('mongoose');
 
+let fakeDB;
+
 describe('Employee', () => {
   
-  //before(async () => {
-    //try {
-      //const fakeDB = new MongoMemoryServer();
-      //const uri = await fakeDB.getConnectionString();
-      //await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    //} 
-    //catch (err) {
-      //console.log(err);
-    //}
-  //});
+ before(async () => {
+    try {
+      fakeDB = new MongoMemoryServer();
+      const uri = await fakeDB.getUri();
+      await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    } catch (err) {
+      console.log(err);
+    }
+  });
   
   describe('Reading data', () => {
     
@@ -128,5 +130,16 @@ describe('Employee', () => {
       const employees = await Employee.find();
       expect(employees.length).to.be.equal(0);
     });
+    
+    afterEach(async () => {
+      await Employee.deleteMany();
+    });
   });
-}); 
+  
+  after(async () => {
+    mongoose.models = {};
+    await mongoose.disconnect();
+    await fakeDB.stop();
+  });
+  
+});*/

@@ -5,17 +5,18 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha --watch \"./{,!(node_modules)/**/}*.test.js\"",
+    "test": "mocha \"./{,!(node_modules)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- yarn test"
   },
   "dependencies": {
     "chai": "4.2.0",
+    "chai-http": "4.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mocha": "6.2.1",
-    "mongodb": "3.3.2",
+    "mongodb": "^3.6.4",
     "mongodb-memory-server": "^6.9.3",
-    "mongoose": "5.7.1",
+    "mongoose": "^5.11.16",
     "nodemon": "^1.19.1",
     "onchange": "6.1.0"
   }
