@@ -1,24 +1,14 @@
-// for a moment in coments
-/*const Department = require('../department.model.js');
-const expect = require('chai').expect;
-const MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer;
-const mongoose = require('mongoose');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const server = require('../../server');
+const Department = require('../department.model.js');
 
-let fakeDB;
+chai.use(chaiHttp);
+
+const expect = chai.expect;
+const request = chai.request;
 
 describe('Department', () => {
-  
- before(async () => {
-    
-    try {
-      fakeDB = new MongoMemoryServer();
-      const uri = await fakeDB.getUri();
-      mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    }
-    catch(err) {
-      console.log(err);
-    }
-  });
   
   describe('Reading data', () => {
     
@@ -129,10 +119,4 @@ describe('Department', () => {
     });
   });
   
-  after(async () => {
-    mongoose.models = {};
-    await mongoose.disconnect();
-    await fakeDB.stop();
-  });
-    
-});*/
+});
