@@ -1,31 +1,28 @@
-// for a moment in coments
-//const Employee = require('../employee.model.js');
-//const expect = require('chai').expect;
-//const MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer; // I use not this
-//const mongoose = require('mongoose');
-//let fakeDB;
-
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../../server');
 const Employee = require('../employee.model.js');
+const MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer; 
+const mongoose = require('mongoose');
 
 chai.use(chaiHttp);
 
 const expect = chai.expect;
 const request = chai.request;
 
+let fakeDB;
+
 describe('Employee', () => {
   
- //before(async () => {
-    //try {
-      //fakeDB = new MongoMemoryServer();
-      //const uri = await fakeDB.getUri();
-      //await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    //} catch (err) {
-      //console.log(err);
-    //}
-  //});
+  before(async () => {
+    try {
+      fakeDB = new MongoMemoryServer();
+      const uri = await fakeDB.getUri();
+      await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    } catch (err) {
+      console.log(err);
+    }
+  });
   
   describe('Reading data', () => {
     
@@ -51,8 +48,7 @@ describe('Employee', () => {
     
     after(async () => {
       await Employee.deleteMany();
-    });
-    
+    });    
   });
   
   describe('Creating data', () => {
@@ -66,8 +62,7 @@ describe('Employee', () => {
     
     after(async () => {
       await Employee.deleteMany();
-    });
-    
+    }); 
   });
   
   describe('Updating data', () => {
@@ -106,7 +101,6 @@ describe('Employee', () => {
     afterEach(async () => {
       await Employee.deleteMany();
     });
-
   });
   
   describe('Removing data', () => {
@@ -145,10 +139,9 @@ describe('Employee', () => {
     });
   });
   
-  //after(async () => {
-    //mongoose.models = {};
-    //await mongoose.disconnect();
-    //await fakeDB.stop();
-  //});
-  
+  after(async () => {
+    mongoose.models = {};
+    await mongoose.disconnect();
+    await fakeDB.stop();
+  });
 });

@@ -21,12 +21,12 @@ app.use((req, res) => {
 })
 
 // connects our backend code with the database
-//mongoose.connect('mongodb://localhost:27017/companyDB', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/companyDB', { useNewUrlParser: true });
 
 //const dbURI = process.env.NODE_ENV === 'production' ? 'url to remote db' : 'url to local db';
-const dbURI = process.env.NODE_ENV === 'production' ? 'mongodb://localhost:27017/companyDB' : 'mongodb://localhost:27017/companyDB';
+//const dbURI = process.env.NODE_ENV === 'production' ? 'mongodb://localhost:27017/companyDB' : 'mongodb://localhost:27017/companyDB';
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
